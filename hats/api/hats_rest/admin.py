@@ -1,5 +1,5 @@
 from django.contrib import admin
-from hats.api.hats_rest.models import Hat, LocationVO
+from .models import Hat, LocationVO
 
 # Register your models here.
 @admin.register(Hat)
