@@ -1,4 +1,3 @@
-from itertools import count
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
@@ -21,22 +20,26 @@ class HatDetailEncoder(ModelEncoder):
         "style",
         "color",
         "picture_url",
-        "location"
+        "location",
     ]
     encoders = {
         "location": LocationVODetailEncoder(),
     }
 
 @require_http_methods(["GET", "POST"])
-def api_list_hats(request):
+def api_list_hats(request, location_vo_id=None):
     if request.method == "GET":
-        hats = Hat.objects.all()
+        if location_vo_id is not None:
+            hats = Hat.objects.all()
+        else:
+            hats = Hat.objects.filter(location=location_vo_id)
         return JsonResponse(
             {"hats": hats},
-            encoder = HatListEncoder
+            encoder = HatListEncoder,
         )
     else:
         content = json.loads(request.body)
+
         try:
             location_href = content['location']
             location = LocationVO.objects.get(href=location_href)
@@ -55,9 +58,9 @@ def api_list_hats(request):
 @require_http_methods(["DELETE", "GET"])
 def api_show_hats(request, id):
     if request.method == "GET":
-        hat = Hat.objects.get(id=id)
+        hats = Hat.objects.get(id=id)
         return JsonResponse(
-            hat,
+            hats,
             encoder=HatDetailEncoder,
             safe=False,
         )
