@@ -2,7 +2,7 @@
 
 Team:
 
-* Person 1 - Which microservice?
+* Jason - Shoes
 * David - Hats
 
 ## Design
