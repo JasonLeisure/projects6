@@ -6,7 +6,7 @@ from django.urls import reverse
 # Create your models here.
 
 class LocationVO(models.Model):
-    href = models.CharField(max_length=300, null=True, blank=True, unique=True)
+    import_href = models.CharField(max_length=300, unique=True)
     closet_name = models.CharField(max_length=300)
 
     def __str__(self):
