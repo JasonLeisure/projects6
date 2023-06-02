@@ -1,4 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.urls import reverse
 
@@ -9,8 +8,9 @@ from django.urls import reverse
 class LocationVO(models.Model):
     href = models.CharField(max_length=300, null=True, blank=True, unique=True)
     closet_name = models.CharField(max_length=300)
-    section_number = models.PositiveBigIntegerField()
-    shelf_number = models.PositiveBigIntegerField()
+
+    def __str__(self):
+        return self.closet_name
 
 class Hat(models.Model):
     fabric = models.CharField(max_length=100)
@@ -22,3 +22,6 @@ class Hat(models.Model):
         related_name="hats",
         on_delete=models.PROTECT,
     )
+
+    def __str__(self):
+        return self.style
