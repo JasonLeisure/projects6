@@ -14,5 +14,4 @@ microservice, here.
 
 ## Hats microservice
 
-Explain your models and integration with the wardrobe
-microservice, here.
+I created a Hat and Location model that handles "GET", "POST", "DELETE", "CREATE", and "PUT" functionalities in the wardrobe API through insomnia.
