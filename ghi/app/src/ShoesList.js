@@ -1,4 +1,4 @@
-import {loadShoesandHats} from './index';
+import React, {useEffect, useState} from "react";
 
 
 function ShoesList(props){
